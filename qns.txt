@@ -1,1 +1,11 @@
-1.
+1.fizzbiz.py
+
+Write a python function called fizzbizz which will take a number n as input.
+And print number i from 1 to n.
+if i divisible by 3 print fizz instead i.
+if i divisible by 5 print bizz instead i.
+if i divisible by 15 print fizzbizz instead i.
+otherwise, it will print just i.
+
+
+
