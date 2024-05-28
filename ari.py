@@ -8,6 +8,7 @@ txt = open(file)
 content = txt.read()
 
 
+
 chars = len(content) - content.count(' ')
 words = len(content.split())
 sentences = content.count('.') + content.count('!') + content.count('?')
@@ -23,7 +24,7 @@ Rounded_value = round(ARI)
 
 #function find grade.
 def get(score):
-    if score == 1:
+    if score == 1 and score > 1:
         return {"age": "5-6", "grade": "Kindergarten"}
     elif score == 2:
         return {"age": "6-7", "grade": "First Grade"}
