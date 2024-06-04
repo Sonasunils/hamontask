@@ -1,16 +1,19 @@
+#import modules
 import json
 import math
 from sys import argv
+#load_journal function read json file
 def load_journal(content):
-    # print(content)
+  
     with open(content, 'r') as file:
         data = json.load(file)
-        # print(data)
+    #return parsed data. 
     return data
-
+#find correlation between squirrel transformation.
 def compute_phi(journal, event):
+    #initilizing values
     n11 = n00 = n10 = n01 = 0
-  
+   
     for entry in journal:
         x = event in entry["events"]
         y = entry["squirrel"]
@@ -38,37 +41,42 @@ def compute_phi(journal, event):
      
        
     value = ntr/dtr
+    #return correlation value
     return value
        
 
 def compute_correlations(content):
+    #load jornal data
     journal = load_journal(content)
-   
+    #find uniq entries.
     events = set() 
     for entry in journal:
         for event in entry["events"]:
             events.add(event)
-   
-  
+    #declear empty dic, store event as key and correlation value as value
     correlations = {}
     for event in events:
         correlations[event] = compute_phi(journal, event)
     print(correlations)
-
+    #return dictionary
     return correlations
 def diagnose(content):
    
     correlations = compute_correlations(content)
+    #find maximum and minimum value from dictionary
     max_event = max(correlations, key=correlations.get)
     min_event = min(correlations, key=correlations.get)
+    #return values
     return max_event, min_event
   
    
 
 if __name__ == "__main__":
+    #unpacking argv
     script,content = argv
-    diagnose(content)
+    #function call
     most_pos, most_neg = diagnose(content)
+    #printing values.
     print(f"Most positively correlated event: {most_pos}")
     print(f"Most negatively correlated event: {most_neg}")
   
