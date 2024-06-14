@@ -1,0 +1,344 @@
+CREATE DATABASE assignment;
+1)
+
+CREATE TABLE employee(id serial primary key,name varchar(100) notnull,department varchar(100) notnull,branch varchar(100) null,salary int(10) notnull default 0);
+
+                                      Table "public.employee"
+   Column   |          Type          | Collation | Nullable |               Default                
+------------+------------------------+-----------+----------+--------------------------------------
+ id         | integer                |           | not null | nextval('employee_id_seq'::regclass)
+ name       | character varying(100) |           | not null | 
+ department | character varying(100) |           | not null | 
+ branch     | character varying(100) |           |          | 
+ salary     | integer                |           | not null | 0
+Indexes:
+    "employee_pkey" PRIMARY KEY, btree (id)
+
+2)
+
+INSERT INTO employee(id,name,department,branch,salary)values  (1,'Sona ss','marketing','being',45000),
+							      (2,'Lekshmi k','marketing','tokyo',45000),
+							      (3,'Anu jo','marketing','being',46000),
+							      (4,'Anna p jonson','sales','new york',40000),
+							      (5,'linta siya','testing','tokyo',10000),
+							      (6,'Fasilath','devops','new york',50046),
+							      (7,'Hari p krishna ','development','tokyo',45000)
+							      (8,'Christina','develoment','being',45000),
+							      (9,'krishna ','testing','tokyo',55000)
+							      (10,'Sakshi anna','devops','being',10500)
+							      
+ id |      name       | department  |  branch  | salary 
+----+-----------------+-------------+----------+--------
+  1 | Sona ss         | marketing   | being    |  45000
+  2 | Lekshmi k       | marketing   | tokyo    |  45000
+  3 | Anu jo          | marketing   | being    |  46000
+  4 | Anna p jonson   | sales       | new york |  40000
+  5 | linta siya      | testing     | tokyo    |  10000
+  6 | Fasilath        | devops      | new york |  50046
+  7 | Hari p krishna  | development | tokyo    |  45000
+  8 | Christina       | develoment  | being    |  45000
+  9 | krishna         | testing     | tokyo    |  55000
+ 10 | Sakshi anna     | devops      | being    |  10500
+
+
+3)
+
+ALTER TABLE employee ADD email varchar(100) null;
+ALTER TABLE employee ADD phone_number varchar(100) null;
+
+
+ id |      name       | department  |  branch  | salary | email | phone_number 
+----+-----------------+-------------+----------+--------+-------+--------------
+  1 | Sona ss         | marketing   | being    |  45000 |       | 
+  2 | Lekshmi k       | marketing   | tokyo    |  45000 |       | 
+  3 | Anu jo          | marketing   | being    |  46000 |       | 
+  4 | Anna p jonson   | sales       | new york |  40000 |       | 
+  5 | linta siya      | testing     | tokyo    |  10000 |       | 
+  6 | Fasilath        | devops      | new york |  50046 |       | 
+  7 | Hari p krishna  | development | tokyo    |  45000 |       | 
+  8 | Christina       | develoment  | being    |  45000 |       | 
+  9 | krishna         | testing     | tokyo    |  55000 |       | 
+ 10 | Sakshi anna     | devops      | being    |  10500 |       | 
+ 
+ 
+ 
+ 4)
+
+                                       Table "public.employee"
+    Column    |          Type          | Collation | Nullable |               Default                
+--------------+------------------------+-----------+----------+--------------------------------------
+ id           | integer                |           | not null | nextval('employee_id_seq'::regclass)
+ name         | character varying(100) |           | not null | 
+ department   | character varying(100) |           | not null | 
+ branch       | character varying(100) |           |          | 
+ salary       | integer                |           | not null | 0
+ email        | character varying(100) |           |          | 
+ phone_number | character varying(100) |           |          | 
+ 
+ 
+ ALTER TABLE employee alter column salary drop default;
+
+ 
+                                        Table "public.employee"
+    Column    |          Type          | Collation | Nullable |               Default                
+--------------+------------------------+-----------+----------+--------------------------------------
+ id           | integer                |           | not null | nextval('employee_id_seq'::regclass)
+ name         | character varying(100) |           | not null | 
+ department   | character varying(100) |           | not null | 
+ branch       | character varying(100) |           |          | 
+ salary       | integer                |           | not null | 
+ email        | character varying(100) |           |          | 
+ phone_number | character varying(100) |           |          | 
+
+
+5)
+
+UPDATE employee SET phone_number='9012344356', email='new@gmail.com' where salary between 10100 and 50045 and department in('marketing','testing');
+
+
+ id |      name       | department  |  branch  | salary |     email     | phone_number 
+----+-----------------+-------------+----------+--------+---------------+--------------
+  4 | Anna p jonson   | sales       | new york |  40000 |               | 
+  5 | linta siya      | testing     | tokyo    |  10000 |               | 
+  6 | Fasilath        | devops      | new york |  50046 |               | 
+  7 | Hari p krishna  | development | tokyo    |  45000 |               | 
+  8 | Christina       | develoment  | being    |  45000 |               | 
+  9 | krishna         | testing     | tokyo    |  55000 |               | 
+ 10 | Sakshi anna     | devops      | being    |  10500 |               | 
+  1 | Sona ss         | marketing   | being    |  45000 | new@gmail.com | 9012344356
+  2 | Lekshmi k       | marketing   | tokyo    |  45000 | new@gmail.com | 9012344356
+  3 | Anu jo          | marketing   | being    |  46000 | new@gmail.com | 9012344356
+  
+  
+ 6)
+ 
+UPDATE employee SET  email='anna@gmail.com' where id=4;
+UPDATE employee SET  email='linta@gmail.com' where id=5;
+UPDATE employee SET email='fasu@gmail.com' where id=6;
+UPDATE employee SET email='hari@gmail.com' where id=7;
+UPDATE employee SET  email='christ@gmail.com' where id=8;
+UPDATE employee SET  email='krishna@gmail.com' where id=9;
+UPDATE employee SET  email='sakshi@gmail.com' where id=10;
+
+ 
+  id |      name       | department  |  branch  | salary |       email       | phone_number 
+----+-----------------+-------------+----------+--------+-------------------+--------------
+  1 | Sona ss         | marketing   | being    |  45000 | new@gmail.com     | 9012344356
+  2 | Lekshmi k       | marketing   | tokyo    |  45000 | new@gmail.com     | 9012344356
+  3 | Anu jo          | marketing   | being    |  46000 | new@gmail.com     | 9012344356
+  4 | Anna p jonson   | sales       | new york |  40000 | anna@gmail.com    | 
+  5 | linta siya      | testing     | tokyo    |  10000 | linta@gmail.com   | 
+  6 | Fasilath        | devops      | new york |  50046 | fasu@gmail.com    | 
+  7 | Hari p krishna  | development | tokyo    |  45000 | hari@gmail.com    | 
+  8 | Christina       | develoment  | being    |  45000 | christ@gmail.com  | 
+  9 | krishna         | testing     | tokyo    |  55000 | krishna@gmail.com | 
+ 10 | Sakshi anna     | devops      | being    |  10500 | sakshi@gmail.com  | 
+
+7)
+
+alter table employee add constraint unique_email unique(email);
+error:
+Key (email)=(new@gmail.com) is duplicated.
+
+
+update employee set email='lekshmi@gamil.com' where id='2';
+update employee set email='anu@gamil.com' where id='3';
+
+select * from employee;
+ id |      name       | department  |  branch  | salary |       email       | phone_number 
+----+-----------------+-------------+----------+--------+-------------------+--------------
+  1 | Sona ss         | marketing   | being    |  45000 | new@gmail.com     | 9012344356
+  4 | Anna p jonson   | sales       | new york |  40000 | anna@gmail.com    | 
+  5 | linta siya      | testing     | tokyo    |  10000 | linta@gmail.com   | 
+  6 | Fasilath        | devops      | new york |  50046 | fasu@gmail.com    | 
+  7 | Hari p krishna  | development | tokyo    |  45000 | hari@gmail.com    | 
+  8 | Christina       | develoment  | being    |  45000 | christ@gmail.com  | 
+  9 | krishna         | testing     | tokyo    |  55000 | krishna@gmail.com | 
+ 10 | Sakshi anna     | devops      | being    |  10500 | sakshi@gmail.com  | 
+  2 | Lekshmi k       | marketing   | tokyo    |  45000 | lekshmi@gamil.com | 9012344356
+  3 | Anu jo          | marketing   | being    |  46000 | anu@gamil.com     | 9012344356
+(10 rows)
+
+alter table employee add constraint unique_email unique(email);
+ALTER TABLE
+
+
+8)
+
+select * from employee;
+ id |      name       | department  |  branch  | salary |       email       | phone_number 
+----+-----------------+-------------+----------+--------+-------------------+--------------
+  1 | Sona ss         | marketing   | being    |  45000 | new@gmail.com     | 9012344356
+  4 | Anna p jonson   | sales       | new york |  40000 | anna@gmail.com    | 
+  5 | linta siya      | testing     | tokyo    |  10000 | linta@gmail.com   | 
+  6 | Fasilath        | devops      | new york |  50046 | fasu@gmail.com    | 
+  7 | Hari p krishna  | development | tokyo    |  45000 | hari@gmail.com    | 
+  8 | Christina       | develoment  | being    |  45000 | christ@gmail.com  | 
+  9 | krishna         | testing     | tokyo    |  55000 | krishna@gmail.com | 
+ 10 | Sakshi anna     | devops      | being    |  10500 | sakshi@gmail.com  | 
+  2 | Lekshmi k       | marketing   | tokyo    |  45000 | lekshmi@gamil.com | 9012344356
+  3 | Anu jo          | marketing   | being    |  46000 | anu@gamil.com     | 9012344356
+(10 rows)
+
+
+9)
+
+ select * from employee;
+ id |      name       | department  |  branch  | salary |       email       | phone_number 
+----+-----------------+-------------+----------+--------+-------------------+--------------
+  1 | Sona ss         | marketing   | being    |  45000 | new@gmail.com     | 9012344356
+  4 | Anna p jonson   | sales       | new york |  40000 | anna@gmail.com    | 
+  5 | linta siya      | testing     | tokyo    |  10000 | linta@gmail.com   | 
+  6 | Fasilath        | devops      | new york |  50046 | fasu@gmail.com    | 
+  7 | Hari p krishna  | development | tokyo    |  45000 | hari@gmail.com    | 
+  8 | Christina       | develoment  | being    |  45000 | christ@gmail.com  | 
+  9 | krishna         | testing     | tokyo    |  55000 | krishna@gmail.com | 
+ 10 | Sakshi anna     | devops      | being    |  10500 | sakshi@gmail.com  | 
+  2 | Lekshmi k       | marketing   | tokyo    |  45000 | lekshmi@gamil.com | 9012344356
+  3 | Anu jo          | marketing   | being    |  46000 | anu@gamil.com     | 9012344356
+ 11 | anjana          | marketing   | being    |  55000 | anjana@gmail.com  | 
+ 12 | nimmi           | marketing   | tokyo    |  55000 | nimmi@gmail.com   | 
+ 13 | anandu          | marketing   | being    |  55000 | anandhu@gmail.com | 
+
+
+select id, name , email,salary from employee where salary>=45000 and department ilike 'maRket%' and branch in ('being','tokyo','newyork') order by salary desc limit 5;
+
+
+ id |  name   |       email       | salary 
+----+---------+-------------------+--------
+ 11 | anjana  | anjana@gmail.com  |  55000
+ 12 | nimmi   | nimmi@gmail.com   |  55000
+ 13 | anandu  | anandhu@gmail.com |  55000
+  3 | Anu jo  | anu@gamil.com     |  46000
+  1 | Sona ss | new@gmail.com     |  45000
+  
+  
+  10)
+  
+  select name from employee where phone_number is null;
+  
+ Anna p jonson
+ linta siya
+ Fasilath
+ Hari p krishna 
+ Christina
+ krishna 
+ Sakshi anna
+ anjana
+ nimmi 
+ anandu
+
+  11)
+  
+ SELECT department, COUNT(*) as count FROM employee GROUP BY department HAVING COUNT(*) > 3 ORDER BY department ASC; 
+ 
+ 
+ department | count 
+------------+-------
+ marketing  |     6
+ 
+ 
+ 12)
+ 
+ select department,max(salary) as max_salary ,min(salary) as min_salary ,avg(salary) as avg_salary from employee group by department;
+ 
+ 
+ department  | max_salary | min_salary |     avg_salary     
+-------------+------------+------------+--------------------
+ devops      |      50046 |      10500 | 30273.000000000000
+ testing     |      55000 |      10000 | 32500.000000000000
+ development |      45000 |      45000 | 45000.000000000000
+ marketing   |      55000 |      45000 | 50166.666666666667
+ sales       |      40000 |      40000 | 40000.000000000000
+ 
+ 13)
+ 
+ select distinct email from employee;
+ 
+       email       
+-------------------
+ new@gmail.com
+ anu@gamil.com
+ linta@gmail.com
+ nimmi@gmail.com
+ hari@gmail.com
+ fasu@gmail.com
+ anna@gmail.com
+ anandhu@gmail.com
+ krishna@gmail.com
+ anjana@gmail.com
+ sakshi@gmail.com
+ christ@gmail.com
+ lekshmi@gamil.com
+ 
+ 
+ 14)
+ 
+ select department ,count(*) as number_of_employees from employee where name ilike 'l%' group by department;
+ 
+ 
+ department | number_of_employees 
+------------+---------------------
+ testing    |                   1
+ marketing  |                   1
+ 
+ 
+ 15)
+ 
+ select branch,count(*) as count_of_employee ,count(phone_number) as count_phone_no from employee group by branch; 
+ 
+ 
+  branch  | count_of_employee | count_phone_no 
+----------+-------------------+----------------
+ tokyo    |                 5 |              1
+ new york |                 2 |              0
+ being    |                 6 |              2
+ 
+ 
+ 16)
+ 
+
+ id |      name       | department  |  branch  | salary |       email       | phone_number 
+----+-----------------+-------------+----------+--------+-------------------+--------------
+  1 | Sona ss         | marketing   | being    |  45000 | new@gmail.com     | 9012344356
+  4 | Anna p jonson   | sales       | new york |  40000 | anna@gmail.com    | 
+  5 | linta siya      | testing     | tokyo    |  10000 | linta@gmail.com   | 
+  6 | Fasilath        | devops      | new york |  50046 | fasu@gmail.com    | 
+  7 | Hari p krishna  | development | tokyo    |  45000 | hari@gmail.com    | 
+  9 | krishna         | testing     | tokyo    |  55000 | krishna@gmail.com | 
+ 10 | Sakshi anna     | devops      | being    |  10500 | sakshi@gmail.com  | 
+  2 | Lekshmi k       | marketing   | tokyo    |  45000 | lekshmi@gamil.com | 9012344356
+  3 | Anu jo          | marketing   | being    |  46000 | anu@gamil.com     | 9012344356
+ 11 | anjana          | marketing   | being    |  55000 | anjana@gmail.com  | 
+ 12 | nimmi           | marketing   | tokyo    |  55000 | nimmi@gmail.com   | 
+ 13 | anandu          | marketing   | being    |  55000 | anandhu@gmail.com | 
+  8 | Christina       | development | being    |  45000 | christ@gmail.com  | 
+(13 rows)
+
+delete from employee where phone_number is null and branch = 'tokyo'; 
+DELETE 4
+
+select * from employee;
+ id |     name      | department  |  branch  | salary |       email       | phone_number 
+----+---------------+-------------+----------+--------+-------------------+--------------
+  1 | Sona ss       | marketing   | being    |  45000 | new@gmail.com     | 9012344356
+  4 | Anna p jonson | sales       | new york |  40000 | anna@gmail.com    | 
+  6 | Fasilath      | devops      | new york |  50046 | fasu@gmail.com    | 
+ 10 | Sakshi anna   | devops      | being    |  10500 | sakshi@gmail.com  | 
+  2 | Lekshmi k     | marketing   | tokyo    |  45000 | lekshmi@gamil.com | 9012344356
+  3 | Anu jo        | marketing   | being    |  46000 | anu@gamil.com     | 9012344356
+ 11 | anjana        | marketing   | being    |  55000 | anjana@gmail.com  | 
+ 13 | anandu        | marketing   | being    |  55000 | anandhu@gmail.com | 
+  8 | Christina     | development | being    |  45000 | christ@gmail.com  | 
+
+
+
+
+
+
+
+  
+ 
+
+
+
