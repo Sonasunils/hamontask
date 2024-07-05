@@ -16,16 +16,16 @@ Indexes:
 
 2)
 
-INSERT INTO employee(id,name,department,branch,salary)values  (1,'Sona ss','marketing','being',45000),
-							      (2,'Lekshmi k','marketing','tokyo',45000),
-							      (3,'Anu jo','marketing','being',46000),
-							      (4,'Anna p jonson','sales','new york',40000),
-							      (5,'linta siya','testing','tokyo',10000),
-							      (6,'Fasilath','devops','new york',50046),
-							      (7,'Hari p krishna ','development','tokyo',45000)
-							      (8,'Christina','develoment','being',45000),
-							      (9,'krishna ','testing','tokyo',55000)
-							      (10,'Sakshi anna','devops','being',10500)
+INSERT INTO employee(id,name,department,branch,salary)values  ('Sona ss','marketing','being',45000),
+							      ('Lekshmi k','marketing','tokyo',45000),
+							      ('Anu jo','marketing','being',46000),
+							      ('Anna p jonson','sales','new york',40000),
+							      ('linta siya','testing','tokyo',10000),
+							      ('Fasilath','devops','new york',50046),
+							      ('Hari p krishna ','development','tokyo',45000)
+							      ('Christina','develoment','being',45000),
+							      ('krishna ','testing','tokyo',55000)
+							      ('Sakshi anna','devops','being',10500)
 							      
  id |      name       | department  |  branch  | salary 
 ----+-----------------+-------------+----------+--------
